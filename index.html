@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The 5 Love Languages Quiz | HAAB</title>
     <meta name="description" content="ค้นหา Love Language ของคุณ! รู้ว่าคุณต้องการความรักแบบไหน">
-    <meta property="og:title" content="The 5 Love Languages Quiz | HAAB">
-    <meta property="og:description" content="ค้นหา Love Language ของคุณ! รู้ว่าคุณต้องการความรักแบบไหน">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
@@ -17,26 +15,14 @@
             --pink-dark: #e91e63;
             --gold: #d4af37;
             --gold-light: #f0d77c;
-            --cream: #fff8f0;
-            --red-accent: #c62828;
-            --white: #ffffff;
-            --haab-red: #c62828;
         }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Prompt', sans-serif;
             min-height: 100vh;
             overflow-x: hidden;
             background: linear-gradient(180deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%);
         }
-
-        /* Sparkle Animation */
         .sparkle {
             position: fixed;
             width: 10px;
@@ -46,13 +32,10 @@
             pointer-events: none;
             animation: sparkle 3s ease-in-out infinite;
         }
-
         @keyframes sparkle {
             0%, 100% { opacity: 0; transform: scale(0); }
             50% { opacity: 1; transform: scale(1); }
         }
-
-        /* Floating Hearts */
         .floating-hearts {
             position: fixed;
             top: 0;
@@ -63,22 +46,18 @@
             overflow: hidden;
             z-index: 0;
         }
-
         .heart {
             position: absolute;
             font-size: 20px;
             animation: float-up 6s ease-in infinite;
             opacity: 0.3;
         }
-
         @keyframes float-up {
             0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
             10% { opacity: 0.3; }
             90% { opacity: 0.3; }
             100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
         }
-
-        /* Container */
         .container {
             position: relative;
             z-index: 1;
@@ -87,8 +66,6 @@
             padding: 20px;
             min-height: 100vh;
         }
-
-        /* Logo */
         .logo {
             position: absolute;
             top: 15px;
@@ -97,14 +74,11 @@
             height: auto;
             z-index: 10;
         }
-
         .logo img {
             width: 100%;
             height: auto;
             border-radius: 8px;
         }
-
-        /* Landing Page */
         .landing-page {
             display: flex;
             flex-direction: column;
@@ -113,22 +87,17 @@
             min-height: 100vh;
             text-align: center;
             animation: fadeIn 1s ease-out;
-            padding-top: 60px;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         .landing-title {
             font-family: 'Playfair Display', serif;
             font-size: 22px;
             color: var(--gold);
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
-
         .landing-main-title {
             font-family: 'Playfair Display', serif;
             font-size: 44px;
@@ -139,36 +108,30 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
             margin-bottom: 20px;
-            text-shadow: none;
             line-height: 1.2;
         }
-
         .landing-subtitle {
             font-size: 16px;
             color: #666;
             margin-bottom: 30px;
             line-height: 1.6;
         }
-
         .mascot-container {
             width: 200px;
             height: 200px;
             margin: 20px 0;
             animation: bounce 2s ease-in-out infinite;
         }
-
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
         }
-
         .mascot-img {
             width: 100%;
             height: 100%;
             object-fit: contain;
             border-radius: 20px;
         }
-
         .start-btn {
             background: linear-gradient(135deg, var(--pink-dark) 0%, #ad1457 100%);
             color: white;
@@ -182,24 +145,16 @@
             box-shadow: 0 8px 25px rgba(233, 30, 99, 0.4);
             font-family: 'Prompt', sans-serif;
         }
-
         .start-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 12px 35px rgba(233, 30, 99, 0.5);
         }
-
-        .start-btn:active {
-            transform: translateY(0);
-        }
-
-        /* Quiz Page */
         .quiz-page {
             display: none;
             min-height: 100vh;
             padding-top: 80px;
             padding-bottom: 40px;
         }
-
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -208,74 +163,60 @@
             margin-bottom: 20px;
             overflow: hidden;
         }
-
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, var(--pink-dark), var(--gold));
             border-radius: 10px;
             transition: width 0.5s ease;
         }
-
         .question-counter {
             text-align: center;
             font-size: 14px;
             color: #888;
             margin-bottom: 15px;
         }
-
-        /* Quiz Mascot */
         .quiz-mascot {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .quiz-mascot img {
             width: 120px;
-            height: auto;
+            height: 120px;
+            margin: 0 auto 15px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+        .quiz-mascot img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             border-radius: 15px;
-            animation: float 3s ease-in-out infinite;
         }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
-            50% { transform: translateY(-8px) rotate(2deg); }
-        }
-
         .question-card {
             background: rgba(255, 255, 255, 0.95);
             border-radius: 30px;
-            padding: 25px 20px;
+            padding: 30px 25px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
             animation: slideIn 0.5s ease-out;
         }
-
         @keyframes slideIn {
             from { opacity: 0; transform: translateX(50px); }
             to { opacity: 1; transform: translateX(0); }
         }
-
         .question-text {
-            font-size: 17px;
+            font-size: 18px;
             font-weight: 500;
             color: #333;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             line-height: 1.6;
             text-align: center;
         }
-
         .options {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
-
         .option-btn {
             background: linear-gradient(135deg, var(--pink-light) 0%, #fce4ec 100%);
             border: 2px solid transparent;
-            padding: 14px 18px;
+            padding: 16px 20px;
             border-radius: 15px;
-            font-size: 14px;
+            font-size: 15px;
             color: #444;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -283,52 +224,23 @@
             font-family: 'Prompt', sans-serif;
             line-height: 1.5;
         }
-
         .option-btn:hover {
             background: linear-gradient(135deg, var(--pink-main) 0%, #f8bbd9 100%);
             border-color: var(--pink-dark);
             transform: translateX(5px);
         }
-
-        .option-btn:active {
-            transform: scale(0.98);
-        }
-
         .option-btn.selected {
             background: linear-gradient(135deg, var(--pink-dark) 0%, #ad1457 100%);
             color: white;
             border-color: var(--pink-dark);
         }
-
-        /* Result Page */
         .result-page {
             display: none;
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 20px;
             padding-bottom: 40px;
             animation: fadeIn 0.8s ease-out;
         }
-
-        /* Result Mascot */
-        .result-mascot {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .result-mascot img {
-            width: 150px;
-            height: auto;
-            border-radius: 15px;
-            animation: celebrate 1s ease-in-out infinite;
-        }
-
-        @keyframes celebrate {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            25% { transform: scale(1.05) rotate(-3deg); }
-            75% { transform: scale(1.05) rotate(3deg); }
-        }
-
         .result-image-container {
             width: 100%;
             border-radius: 20px;
@@ -342,46 +254,35 @@
             align-items: center;
             justify-content: center;
         }
-
         @keyframes popIn {
             from { opacity: 0; transform: scale(0.8); }
             to { opacity: 1; transform: scale(1); }
         }
-
         .result-image {
             width: 100%;
             height: auto;
             display: block;
         }
-
         .image-error {
             padding: 40px;
             text-align: center;
             color: #999;
         }
-
-        .image-error p {
-            margin-bottom: 10px;
-        }
-
         .share-section {
             text-align: center;
             margin-top: 20px;
         }
-
         .share-title {
             font-size: 16px;
             color: #666;
             margin-bottom: 15px;
         }
-
         .share-buttons {
             display: flex;
             gap: 15px;
             justify-content: center;
             flex-wrap: wrap;
         }
-
         .share-btn {
             display: flex;
             align-items: center;
@@ -395,22 +296,18 @@
             border: none;
             font-family: 'Prompt', sans-serif;
         }
-
         .share-btn.instagram {
             background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%);
             color: white;
         }
-
         .share-btn.download {
             background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
             color: #333;
         }
-
         .share-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
         }
-
         .retry-btn {
             display: block;
             width: 100%;
@@ -426,18 +323,11 @@
             transition: all 0.3s ease;
             font-family: 'Prompt', sans-serif;
         }
-
         .retry-btn:hover {
             background: var(--pink-dark);
             color: white;
         }
-
-        /* Hidden */
-        .hidden {
-            display: none !important;
-        }
-
-        /* Loading Animation */
+        .hidden { display: none !important; }
         .loading-overlay {
             position: fixed;
             top: 0;
@@ -451,72 +341,49 @@
             justify-content: center;
             z-index: 100;
         }
-
         .loading-mascot {
-            width: 180px;
-            height: auto;
+            width: 150px;
+            height: 150px;
+            animation: heartBeat 1s ease-in-out infinite;
+        }
+        .loading-mascot img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
             border-radius: 20px;
-            animation: heartBeatMascot 1.5s ease-in-out infinite;
         }
-
-        @keyframes heartBeatMascot {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
         .loading-text {
-            font-size: 18px;
+            font-size: 20px;
             color: var(--pink-dark);
-            margin-top: 25px;
+            margin-top: 20px;
             animation: pulse 1.5s ease-in-out infinite;
         }
-
         @keyframes pulse {
             0%, 100% { opacity: 0.5; }
             50% { opacity: 1; }
         }
-
         .loading-hearts {
             display: flex;
             gap: 10px;
             margin-top: 15px;
         }
-
         .loading-heart {
-            font-size: 24px;
+            font-size: 30px;
             animation: heartBeat 1s ease-in-out infinite;
         }
-
         .loading-heart:nth-child(2) { animation-delay: 0.2s; }
         .loading-heart:nth-child(3) { animation-delay: 0.4s; }
-
         @keyframes heartBeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.3); }
+            50% { transform: scale(1.1); }
         }
-
-        /* Responsive */
         @media (max-width: 400px) {
-            .landing-main-title {
-                font-size: 36px;
-            }
-            .question-text {
-                font-size: 15px;
-            }
-            .option-btn {
-                font-size: 13px;
-                padding: 12px 14px;
-            }
-            .mascot-container {
-                width: 160px;
-                height: 160px;
-            }
-            .quiz-mascot img {
-                width: 100px;
-            }
+            .landing-main-title { font-size: 36px; }
+            .question-text { font-size: 16px; }
+            .option-btn { font-size: 14px; padding: 14px 16px; }
+            .mascot-container { width: 160px; height: 160px; }
+            .quiz-mascot { width: 100px; height: 100px; }
         }
-
-        /* Confetti */
         .confetti-container {
             position: fixed;
             top: 0;
@@ -527,14 +394,12 @@
             z-index: 50;
             overflow: hidden;
         }
-
         .confetti {
             position: absolute;
             width: 10px;
             height: 10px;
             animation: confetti-fall 3s linear forwards;
         }
-
         @keyframes confetti-fall {
             0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
             100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
@@ -542,12 +407,11 @@
     </style>
 </head>
 <body>
-    <!-- Floating Hearts Background -->
     <div class="floating-hearts" id="floatingHearts"></div>
-
-    <!-- Loading Overlay -->
     <div class="loading-overlay hidden" id="loadingOverlay">
-        <img src="./images/Mascot/mascot-gift.jpeg" alt="Loading Mascot" class="loading-mascot">
+        <div class="loading-mascot">
+            <img src="./images/Mascot/hug.jpeg" alt="HAAB Mascot">
+        </div>
         <p class="loading-text">กำลังวิเคราะห์ Love Language ของคุณ...</p>
         <div class="loading-hearts">
             <span class="loading-heart">💕</span>
@@ -555,17 +419,11 @@
             <span class="loading-heart">💕</span>
         </div>
     </div>
-
-    <!-- Confetti Container -->
     <div class="confetti-container" id="confettiContainer"></div>
-
     <div class="container">
-        <!-- Logo -->
         <div class="logo">
             <img src="./images/LOGO/HAAB.png" alt="HAAB Logo">
         </div>
-
-        <!-- Landing Page -->
         <div class="landing-page" id="landingPage">
             <p class="landing-title">My Love Language is...</p>
             <h1 class="landing-main-title">The 5 Love<br>Languages</h1>
@@ -575,31 +433,24 @@
                 แล้ว Share ให้คนที่คุณรักได้เข้าใจ 💕
             </p>
             <div class="mascot-container">
-                <img src="./images/Mascot/mascot-landing.jpeg" alt="HAAB Mascot" class="mascot-img">
+                <img src="./images/Mascot/landing.jpeg" alt="HAAB Mascot" class="mascot-img">
             </div>
             <button class="start-btn" onclick="startQuiz()">เริ่มทำแบบทดสอบ</button>
         </div>
-
-        <!-- Quiz Page -->
         <div class="quiz-page" id="quizPage">
             <div class="progress-bar">
                 <div class="progress-fill" id="progressFill"></div>
             </div>
             <div class="question-counter" id="questionCounter">คำถามที่ 1 / 7</div>
-            <div class="quiz-mascot">
-                <img src="./images/Mascot/mascot-quiz.jpeg" alt="Quiz Mascot" id="quizMascot">
+            <div class="quiz-mascot" id="quizMascot">
+                <img src="./images/Mascot/stage.jpeg" alt="HAAB Mascot" id="quizMascotImg">
             </div>
             <div class="question-card" id="questionCard">
                 <p class="question-text" id="questionText"></p>
                 <div class="options" id="optionsContainer"></div>
             </div>
         </div>
-
-        <!-- Result Page -->
         <div class="result-page" id="resultPage">
-            <div class="result-mascot">
-                <img src="./images/Mascot/mascot-result.jpeg" alt="Result Mascot">
-            </div>
             <div class="result-image-container" id="resultImageContainer">
                 <img src="" alt="Your Love Language Result" class="result-image" id="resultImage" onload="imageLoaded()" onerror="imageError()">
             </div>
@@ -617,108 +468,81 @@
             </div>
         </div>
     </div>
-
     <script>
-        // Quiz Data
-        const questions = [
-            {
-                text: "1. เมื่อคุณรู้สึกแย่หรือเหนื่อยล้า สิ่งที่เยียวยาใจคุณได้ดีที่สุดคือ?",
-                options: [
-                    { text: "คำพูดปลอบโยนว่า \"ไม่เป็นไรนะ คุณทำดีที่สุดแล้ว\"", value: "A" },
-                    { text: "เขาเข้ามาช่วยทำงานบ้านหรือจัดการปัญหาแทนคุณ", value: "B" },
-                    { text: "เขาซื้อของกินที่คุณชอบมาวางไว้ให้เงียบๆ", value: "C" },
-                    { text: "เขามานั่งข้างๆ รับฟังคุณระบายโดยไม่เล่นมือถือ", value: "D" },
-                    { text: "เขาเข้ามากอดคุณแน่นๆ โดยไม่ต้องพูดอะไร", value: "E" }
-                ]
+        const IMAGE_PATHS = {
+            logo: "./images/LOGO/HAAB.png",
+            mascot: {
+                landing: "./images/Mascot/landing.jpeg",
+                quiz: "./images/Mascot/stage.jpeg",
+                hug: "./images/Mascot/hug.jpeg",
+                gift: "./images/Mascot/gift.jpeg"
             },
-            {
-                text: "2. ในวันเกิดหรือวันครบรอบ คุณจะประทับใจที่สุดถ้า...",
-                options: [
-                    { text: "ได้รับจดหมายรักหรือการ์ดที่เขียนความรู้สึกซึ้งๆ", value: "A" },
-                    { text: "เขาเซอร์ไพรส์ด้วยการลงมือจัดห้องหรือทำอาหารให้ทาน", value: "B" },
-                    { text: "ได้ของขวัญที่คุณเคยบ่นว่าอยากได้", value: "C" },
-                    { text: "ได้ไปเที่ยวที่สวยๆ และใช้เวลาด้วยกันทั้งวัน", value: "D" },
-                    { text: "ได้นอนดูหนังหรือสวีทกันสองต่อสอง", value: "E" }
-                ]
-            },
-            {
-                text: "3. คุณจะรู้สึก \"โกรธ/น้อยใจ\" มากที่สุด เมื่อแฟน...",
-                options: [
-                    { text: "พูดจาแรงๆ ใส่อารมณ์ หรือวิจารณ์คุณ", value: "A" },
-                    { text: "เอาเปรียบ ไม่ช่วยหยิบจับอะไรเลย ปล่อยคุณทำคนเดียว", value: "B" },
-                    { text: "ลืมวันสำคัญ หรือไปเที่ยวไหนก็ไม่เคยมีของฝาก", value: "C" },
-                    { text: "สนใจแต่เกม/เพื่อน/งาน จนไม่มีเวลาให้คุณ", value: "D" },
-                    { text: "เดินห่างๆ ปัดมือออก หรือทำท่ารังเกียจการสัมผัส", value: "E" }
-                ]
-            },
-            {
-                text: "4. วิธีง้อ (ขอคืนดี) ที่ทำให้คุณใจอ่อนเร็วที่สุด?",
-                options: [
-                    { text: "คำขอโทษที่จริงใจและบอกรักคุณ", value: "A" },
-                    { text: "การที่เขาลุกขึ้นมาทำงานบ้านหรือทำสิ่งดีๆ ชดเชยให้", value: "B" },
-                    { text: "การที่เขาซื้อขนมหรือของขวัญมาง้อ", value: "C" },
-                    { text: "การที่เขาชวนคุยปรับความเข้าใจและให้เวลากับคุณ", value: "D" },
-                    { text: "การที่เขาดึงคุณเข้าไปกอดหรือหอมแก้ม", value: "E" }
-                ]
-            },
-            {
-                text: "5. ความสุขเล็กๆ ในชีวิตประจำวันที่คุณต้องการคือ?",
-                options: [
-                    { text: "ได้ยินคำว่า \"รักนะ\" หรือ \"คิดถึง\" บ่อยๆ", value: "A" },
-                    { text: "มีคนคอยดูแลเรื่องพื้นฐาน (เช่น เปิดประตูให้, ขับรถให้)", value: "B" },
-                    { text: "มีเซอร์ไพรส์เล็กๆ น้อยๆ ในวันธรรมดา", value: "C" },
-                    { text: "ได้ทานข้าวเย็นด้วยกันและคุยกันเรื่องที่เจอมา", value: "D" },
-                    { text: "ได้จับมือตอนเดินห้าง หรือนั่งเบียดกันบนรถ", value: "E" }
-                ]
-            },
-            {
-                text: "6. คุณคิดว่า \"ความรักที่ดี\" วัดกันที่ตรงไหน?",
-                options: [
-                    { text: "การสื่อสารที่ดี ให้กำลังใจกันเสมอ", value: "A" },
-                    { text: "การเป็นคู่ที่พร้อมช่วยเหลือดูแลกัน", value: "B" },
-                    { text: "ความใส่ใจ ที่จดจำรายละเอียดความชอบของกันได้", value: "C" },
-                    { text: "การมีเวลาคุณภาพให้กัน ไม่ปล่อยให้อีกฝ่ายเหงา", value: "D" },
-                    { text: "ความใกล้ชิดทางกาย ความอบอุ่นที่สัมผัสได้", value: "E" }
-                ]
-            },
-            {
-                text: "7. ถ้าต้องเลือกเพียง 1 อย่าง คุณขาดอะไรไม่ได้เลย?",
-                options: [
-                    { text: "คำชมและการยอมรับ", value: "A" },
-                    { text: "การซัพพอร์ตช่วยเหลือ", value: "B" },
-                    { text: "สิ่งของแทนใจ", value: "C" },
-                    { text: "เวลาและความสนใจ", value: "D" },
-                    { text: "การสัมผัสแตะตัว", value: "E" }
-                ]
+            results: {
+                A: "./images/Final_results/A.png",
+                B: "./images/Final_results/B.png",
+                C: "./images/Final_results/C.png",
+                D: "./images/Final_results/D.png",
+                E: "./images/Final_results/E.png"
             }
+        };
+        const questions = [
+            { text: "1. เมื่อคุณรู้สึกแย่หรือเหนื่อยล้า สิ่งที่เยียวยาใจคุณได้ดีที่สุดคือ?", options: [
+                { text: "คำพูดปลอบโยนว่า \"ไม่เป็นไรนะ คุณทำดีที่สุดแล้ว\"", value: "A" },
+                { text: "เขาเข้ามาช่วยทำงานบ้านหรือจัดการปัญหาแทนคุณ", value: "B" },
+                { text: "เขาซื้อของกินที่คุณชอบมาวางไว้ให้เงียบๆ", value: "C" },
+                { text: "เขามานั่งข้างๆ รับฟังคุณระบายโดยไม่เล่นมือถือ", value: "D" },
+                { text: "เขาเข้ามากอดคุณแน่นๆ โดยไม่ต้องพูดอะไร", value: "E" }
+            ], mascot: "quiz" },
+            { text: "2. ในวันเกิดหรือวันครบรอบ คุณจะประทับใจที่สุดถ้า...", options: [
+                { text: "ได้รับจดหมายรักหรือการ์ดที่เขียนความรู้สึกซึ้งๆ", value: "A" },
+                { text: "เขาเซอร์ไพรส์ด้วยการลงมือจัดห้องหรือทำอาหารให้ทาน", value: "B" },
+                { text: "ได้ของขวัญที่คุณเคยบ่นว่าอยากได้", value: "C" },
+                { text: "ได้ไปเที่ยวที่สวยๆ และใช้เวลาด้วยกันทั้งวัน", value: "D" },
+                { text: "ได้นอนดูหนังหรือสวีทกันสองต่อสอง", value: "E" }
+            ], mascot: "gift" },
+            { text: "3. คุณจะรู้สึก \"โกรธ/น้อยใจ\" มากที่สุด เมื่อแฟน...", options: [
+                { text: "พูดจาแรงๆ ใส่อารมณ์ หรือวิจารณ์คุณ", value: "A" },
+                { text: "เอาเปรียบ ไม่ช่วยหยิบจับอะไรเลย ปล่อยคุณทำคนเดียว", value: "B" },
+                { text: "ลืมวันสำคัญ หรือไปเที่ยวไหนก็ไม่เคยมีของฝาก", value: "C" },
+                { text: "สนใจแต่เกม/เพื่อน/งาน จนไม่มีเวลาให้คุณ", value: "D" },
+                { text: "เดินห่างๆ ปัดมือออก หรือทำท่ารังเกียจการสัมผัส", value: "E" }
+            ], mascot: "hug" },
+            { text: "4. วิธีง้อ (ขอคืนดี) ที่ทำให้คุณใจอ่อนเร็วที่สุด?", options: [
+                { text: "คำขอโทษที่จริงใจและบอกรักคุณ", value: "A" },
+                { text: "การที่เขาลุกขึ้นมาทำงานบ้านหรือทำสิ่งดีๆ ชดเชยให้", value: "B" },
+                { text: "การที่เขาซื้อขนมหรือของขวัญมาง้อ", value: "C" },
+                { text: "การที่เขาชวนคุยปรับความเข้าใจและให้เวลากับคุณ", value: "D" },
+                { text: "การที่เขาดึงคุณเข้าไปกอดหรือหอมแก้ม", value: "E" }
+            ], mascot: "gift" },
+            { text: "5. ความสุขเล็กๆ ในชีวิตประจำวันที่คุณต้องการคือ?", options: [
+                { text: "ได้ยินคำว่า \"รักนะ\" หรือ \"คิดถึง\" บ่อยๆ", value: "A" },
+                { text: "มีคนคอยดูแลเรื่องพื้นฐาน (เช่น เปิดประตูให้, ขับรถให้)", value: "B" },
+                { text: "มีเซอร์ไพรส์เล็กๆ น้อยๆ ในวันธรรมดา", value: "C" },
+                { text: "ได้ทานข้าวเย็นด้วยกันและคุยกันเรื่องที่เจอมา", value: "D" },
+                { text: "ได้จับมือตอนเดินห้าง หรือนั่งเบียดกันบนรถ", value: "E" }
+            ], mascot: "hug" },
+            { text: "6. คุณคิดว่า \"ความรักที่ดี\" วัดกันที่ตรงไหน?", options: [
+                { text: "การสื่อสารที่ดี ให้กำลังใจกันเสมอ", value: "A" },
+                { text: "การเป็นคู่ที่พร้อมช่วยเหลือดูแลกัน", value: "B" },
+                { text: "ความใส่ใจ ที่จดจำรายละเอียดความชอบของกันได้", value: "C" },
+                { text: "การมีเวลาคุณภาพให้กัน ไม่ปล่อยให้อีกฝ่ายเหงา", value: "D" },
+                { text: "ความใกล้ชิดทางกาย ความอบอุ่นที่สัมผัสได้", value: "E" }
+            ], mascot: "quiz" },
+            { text: "7. ถ้าต้องเลือกเพียง 1 อย่าง คุณขาดอะไรไม่ได้เลย?", options: [
+                { text: "คำชมและการยอมรับ", value: "A" },
+                { text: "การซัพพอร์ตช่วยเหลือ", value: "B" },
+                { text: "สิ่งของแทนใจ", value: "C" },
+                { text: "เวลาและความสนใจ", value: "D" },
+                { text: "การสัมผัสแตะตัว", value: "E" }
+            ], mascot: "hug" }
         ];
-
-        // Result images mapping - organized folder structure
-        const resultImages = {
-            A: "./images/Final_results/A.png",
-            B: "./images/Final_results/B.png",
-            C: "./images/Final_results/C.png",
-            D: "./images/Final_results/D.png",
-            E: "./images/Final_results/E.png"
-        };
-
-        const resultNames = {
-            A: "Words of Affirmation",
-            B: "Acts of Service",
-            C: "Receiving Gifts",
-            D: "Quality Time",
-            E: "Physical Touch"
-        };
-
+        const resultNames = { A: "Words of Affirmation", B: "Acts of Service", C: "Receiving Gifts", D: "Quality Time", E: "Physical Touch" };
         let currentQuestion = 0;
         let answers = { A: 0, B: 0, C: 0, D: 0, E: 0 };
         let currentResult = 'A';
-
-        // Create floating hearts
         function createFloatingHearts() {
             const container = document.getElementById('floatingHearts');
             const hearts = ['💕', '💗', '💖', '💝', '❤️', '🩷'];
-            
             for (let i = 0; i < 15; i++) {
                 const heart = document.createElement('span');
                 heart.className = 'heart';
@@ -729,8 +553,6 @@
                 container.appendChild(heart);
             }
         }
-
-        // Create sparkles
         function createSparkles() {
             for (let i = 0; i < 20; i++) {
                 const sparkle = document.createElement('div');
@@ -741,8 +563,6 @@
                 document.body.appendChild(sparkle);
             }
         }
-
-        // Start Quiz
         function startQuiz() {
             document.getElementById('landingPage').classList.add('hidden');
             document.getElementById('quizPage').style.display = 'block';
@@ -750,47 +570,34 @@
             answers = { A: 0, B: 0, C: 0, D: 0, E: 0 };
             showQuestion();
         }
-
-        // Show Question
         function showQuestion() {
             const question = questions[currentQuestion];
             document.getElementById('questionText').textContent = question.text;
-            document.getElementById('questionCounter').textContent = `คำถามที่ ${currentQuestion + 1} / ${questions.length}`;
-            document.getElementById('progressFill').style.width = `${((currentQuestion) / questions.length) * 100}%`;
-
+            document.getElementById('questionCounter').textContent = 'คำถามที่ ' + (currentQuestion + 1) + ' / ' + questions.length;
+            document.getElementById('progressFill').style.width = ((currentQuestion) / questions.length * 100) + '%';
+            const mascotImg = document.getElementById('quizMascotImg');
+            if (question.mascot && IMAGE_PATHS.mascot[question.mascot]) {
+                mascotImg.src = IMAGE_PATHS.mascot[question.mascot];
+            }
             const optionsContainer = document.getElementById('optionsContainer');
             optionsContainer.innerHTML = '';
-
-            // Shuffle options for variety
             const shuffledOptions = [...question.options].sort(() => Math.random() - 0.5);
-
             shuffledOptions.forEach((option, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'option-btn';
                 btn.textContent = option.text;
                 btn.onclick = () => selectOption(option.value, btn);
-                btn.style.animationDelay = `${index * 0.1}s`;
+                btn.style.animationDelay = (index * 0.1) + 's';
                 optionsContainer.appendChild(btn);
             });
-
-            // Animate card
             const card = document.getElementById('questionCard');
             card.style.animation = 'none';
-            setTimeout(() => {
-                card.style.animation = 'slideIn 0.5s ease-out';
-            }, 10);
+            setTimeout(() => { card.style.animation = 'slideIn 0.5s ease-out'; }, 10);
         }
-
-        // Select Option
         function selectOption(value, btn) {
-            // Visual feedback
             document.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
             btn.classList.add('selected');
-
-            // Record answer
             answers[value]++;
-
-            // Next question or show result
             setTimeout(() => {
                 currentQuestion++;
                 if (currentQuestion < questions.length) {
@@ -800,66 +607,38 @@
                 }
             }, 400);
         }
-
-        // Show Loading
         function showLoading() {
             document.getElementById('quizPage').style.display = 'none';
             document.getElementById('loadingOverlay').classList.remove('hidden');
-
             setTimeout(() => {
                 document.getElementById('loadingOverlay').classList.add('hidden');
                 showResult();
             }, 2500);
         }
-
-        // Get dominant love language
         function getDominantLoveLanguage() {
             let max = 0;
             let result = 'A';
             for (const [key, value] of Object.entries(answers)) {
-                if (value > max) {
-                    max = value;
-                    result = key;
-                }
+                if (value > max) { max = value; result = key; }
             }
             return result;
         }
-
-        // Image loaded successfully
-        function imageLoaded() {
-            console.log('Image loaded successfully');
-        }
-
-        // Image load error
+        function imageLoaded() { console.log('Image loaded successfully'); }
         function imageError() {
             const container = document.getElementById('resultImageContainer');
-            container.innerHTML = `
-                <div class="image-error">
-                    <p>❌ รูปไม่สามารถโหลดได้</p>
-                    <p style="font-size: 14px;">กรุณาตรวจสอบว่ามี folder "images/Final_results" และไฟล์รูปครบ</p>
-                    <p style="font-size: 12px; color: #aaa;">Your result: ${resultNames[currentResult]}</p>
-                </div>
-            `;
+            container.innerHTML = '<div class="image-error"><p>❌ รูปไม่สามารถโหลดได้</p><p style="font-size: 14px;">กรุณาตรวจสอบว่ามี folder "images/Final_results" และไฟล์รูปครบ</p><p style="font-size: 12px; color: #aaa;">Your result: ' + resultNames[currentResult] + '</p></div>';
         }
-
-        // Show Result
         function showResult() {
             currentResult = getDominantLoveLanguage();
             document.getElementById('resultPage').style.display = 'block';
-            
             const img = document.getElementById('resultImage');
-            img.src = resultImages[currentResult];
-            
-            // Trigger confetti
+            img.src = IMAGE_PATHS.results[currentResult];
             createConfetti();
         }
-
-        // Create Confetti
         function createConfetti() {
             const container = document.getElementById('confettiContainer');
             container.innerHTML = '';
             const colors = ['#e91e63', '#f8bbd9', '#fce4ec', '#d4af37', '#f0d77c', '#ff4081'];
-            
             for (let i = 0; i < 50; i++) {
                 const confetti = document.createElement('div');
                 confetti.className = 'confetti';
@@ -870,52 +649,71 @@
                 container.appendChild(confetti);
             }
         }
-
-        // Download Result
         function downloadResult() {
             const img = document.getElementById('resultImage');
-            
-            // Open image in new tab for download
-            window.open(img.src, '_blank');
+            // Create a temporary link and trigger download
+            fetch(img.src)
+                .then(response => response.blob())
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'HAAB-Love-Language-' + currentResult + '.png';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(() => {
+                    // Fallback: open in new tab
+                    window.open(img.src, '_blank');
+                });
         }
-
-        // Share to Instagram
-        function shareToIG() {
-            const text = `My Love Language is ${resultNames[currentResult]}! 💕\n\nค้นหา Love Language ของคุณได้ที่ลิงก์ใน Bio!\n\n#HAAB #LoveLanguage #Valentine`;
-            
-            // For mobile, try to open Instagram
+        async function shareToIG() {
+            const img = document.getElementById('resultImage');
+            // Check if Web Share API is available (works on mobile)
+            if (navigator.share && navigator.canShare) {
+                try {
+                    const response = await fetch(img.src);
+                    const blob = await response.blob();
+                    const file = new File([blob], 'HAAB-Love-Language-' + currentResult + '.png', { type: 'image/png' });
+                    if (navigator.canShare({ files: [file] })) {
+                        await navigator.share({
+                            files: [file],
+                            title: 'My Love Language Result',
+                            text: 'My Love Language is ' + resultNames[currentResult] + '! 💕 #HAAB #LoveLanguage'
+                        });
+                        return;
+                    }
+                } catch (err) { console.log('Web Share failed:', err); }
+            }
+            // Fallback: download and show modal
+            downloadResult();
+            showShareModal();
+        }
+        function showShareModal() {
+            const modal = document.createElement('div');
+            modal.id = 'shareModal';
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;';
+            modal.innerHTML = '<div style="background:white;border-radius:20px;padding:30px;max-width:350px;text-align:center;animation:popIn 0.3s ease-out;"><div style="font-size:50px;margin-bottom:15px;">📸</div><h3 style="color:#e91e63;margin-bottom:15px;font-size:20px;">บันทึกรูปแล้ว!</h3><p style="color:#666;margin-bottom:20px;line-height:1.6;font-size:15px;">รูปถูกดาวน์โหลดแล้ว<br>ทำตามขั้นตอนนี้เลย:</p><div style="text-align:left;background:#fce4ec;padding:15px;border-radius:12px;margin-bottom:20px;"><p style="margin:8px 0;color:#333;font-size:14px;">1️⃣ เปิด Instagram</p><p style="margin:8px 0;color:#333;font-size:14px;">2️⃣ สร้าง Story ใหม่</p><p style="margin:8px 0;color:#333;font-size:14px;">3️⃣ เลือกรูปที่บันทึกไว้</p><p style="margin:8px 0;color:#333;font-size:14px;">4️⃣ Share ได้เลย! 💕</p></div><button onclick="closeShareModal()" style="background:linear-gradient(135deg,#e91e63 0%,#ad1457 100%);color:white;border:none;padding:14px 40px;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;font-family:Prompt,sans-serif;">เข้าใจแล้ว!</button></div>';
+            document.body.appendChild(modal);
+            modal.addEventListener('click', function(e) { if (e.target === modal) closeShareModal(); });
+        }
+        function closeShareModal() {
+            const modal = document.getElementById('shareModal');
+            if (modal) modal.remove();
             if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                // First download the image
-                downloadResult();
-                
-                // Show instruction
-                alert('รูปจะเปิดในหน้าใหม่! 📸\n\n1. กดค้างที่รูป แล้วบันทึก\n2. เปิด Instagram\n3. สร้าง Story ใหม่\n4. เลือกรูปที่บันทึกไว้\n5. Share ได้เลย! 💕');
-                
-                // Try to open Instagram after a delay
-                setTimeout(() => {
-                    window.location.href = 'instagram://story-camera';
-                }, 1000);
-            } else {
-                // Desktop - just download
-                downloadResult();
-                alert('รูปจะเปิดในหน้าใหม่! 📸\n\n1. คลิกขวา บันทึกรูป\n2. นำไป Share ลง Instagram Story ได้เลย! 💕');
+                setTimeout(() => { window.location.href = 'instagram://story-camera'; }, 300);
             }
         }
-
-        // Retry Quiz
         function retryQuiz() {
             document.getElementById('resultPage').style.display = 'none';
             document.getElementById('landingPage').classList.remove('hidden');
             document.getElementById('confettiContainer').innerHTML = '';
-            
-            // Reset result image container
             document.getElementById('resultImageContainer').innerHTML = '<img src="" alt="Your Love Language Result" class="result-image" id="resultImage" onload="imageLoaded()" onerror="imageError()">';
-            
             currentQuestion = 0;
             answers = { A: 0, B: 0, C: 0, D: 0, E: 0 };
         }
-
-        // Initialize
         document.addEventListener('DOMContentLoaded', () => {
             createFloatingHearts();
             createSparkles();

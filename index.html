@@ -651,60 +651,35 @@
         }
         function downloadResult() {
             const img = document.getElementById('resultImage');
-            // Create a temporary link and trigger download
-            fetch(img.src)
-                .then(response => response.blob())
-                .then(blob => {
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = 'HAAB-Love-Language-' + currentResult + '.png';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
-                })
-                .catch(() => {
-                    // Fallback: open in new tab
-                    window.open(img.src, '_blank');
-                });
+            // For Safari/iOS - open image in new tab, user can long-press to save
+            const newTab = window.open('', '_blank');
+            newTab.document.write('<html><head><title>บันทึกรูป - HAAB Love Language</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>body{margin:0;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;background:#fce4ec;font-family:sans-serif;padding:20px;box-sizing:border-box;}img{max-width:100%;height:auto;border-radius:15px;box-shadow:0 10px 30px rgba(0,0,0,0.2);}p{color:#e91e63;margin-top:20px;font-size:16px;text-align:center;}</style></head><body><img src="' + img.src + '" alt="Love Language Result"><p>📱 กดค้างที่รูป แล้วเลือก "บันทึกรูปภาพ"</p></body></html>');
+            newTab.document.close();
         }
-        async function shareToIG() {
-            const img = document.getElementById('resultImage');
-            // Check if Web Share API is available (works on mobile)
-            if (navigator.share && navigator.canShare) {
-                try {
-                    const response = await fetch(img.src);
-                    const blob = await response.blob();
-                    const file = new File([blob], 'HAAB-Love-Language-' + currentResult + '.png', { type: 'image/png' });
-                    if (navigator.canShare({ files: [file] })) {
-                        await navigator.share({
-                            files: [file],
-                            title: 'My Love Language Result',
-                            text: 'My Love Language is ' + resultNames[currentResult] + '! 💕 #HAAB #LoveLanguage'
-                        });
-                        return;
-                    }
-                } catch (err) { console.log('Web Share failed:', err); }
-            }
-            // Fallback: download and show modal
-            downloadResult();
+        function shareToIG() {
             showShareModal();
         }
         function showShareModal() {
+            const img = document.getElementById('resultImage');
             const modal = document.createElement('div');
             modal.id = 'shareModal';
-            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px;';
-            modal.innerHTML = '<div style="background:white;border-radius:20px;padding:30px;max-width:350px;text-align:center;animation:popIn 0.3s ease-out;"><div style="font-size:50px;margin-bottom:15px;">📸</div><h3 style="color:#e91e63;margin-bottom:15px;font-size:20px;">บันทึกรูปแล้ว!</h3><p style="color:#666;margin-bottom:20px;line-height:1.6;font-size:15px;">รูปถูกดาวน์โหลดแล้ว<br>ทำตามขั้นตอนนี้เลย:</p><div style="text-align:left;background:#fce4ec;padding:15px;border-radius:12px;margin-bottom:20px;"><p style="margin:8px 0;color:#333;font-size:14px;">1️⃣ เปิด Instagram</p><p style="margin:8px 0;color:#333;font-size:14px;">2️⃣ สร้าง Story ใหม่</p><p style="margin:8px 0;color:#333;font-size:14px;">3️⃣ เลือกรูปที่บันทึกไว้</p><p style="margin:8px 0;color:#333;font-size:14px;">4️⃣ Share ได้เลย! 💕</p></div><button onclick="closeShareModal()" style="background:linear-gradient(135deg,#e91e63 0%,#ad1457 100%);color:white;border:none;padding:14px 40px;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;font-family:Prompt,sans-serif;">เข้าใจแล้ว!</button></div>';
+            modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;align-items:center;justify-content:center;z-index:1000;padding:15px;box-sizing:border-box;';
+            modal.innerHTML = '<div style="background:white;border-radius:20px;padding:25px;max-width:350px;width:100%;text-align:center;max-height:90vh;overflow-y:auto;"><div style="font-size:40px;margin-bottom:10px;">📸💕</div><h3 style="color:#e91e63;margin-bottom:15px;font-size:18px;">Share ไปให้คนที่รักเลย!</h3><div style="background:#fce4ec;padding:15px;border-radius:12px;margin-bottom:15px;text-align:left;"><p style="margin:8px 0;color:#333;font-size:14px;"><b>ขั้นตอนที่ 1:</b> กดปุ่ม "บันทึกรูป" ด้านล่าง</p><p style="margin:8px 0;color:#333;font-size:14px;"><b>ขั้นตอนที่ 2:</b> กดค้างที่รูป แล้วเลือก "บันทึกรูปภาพ"</p><p style="margin:8px 0;color:#333;font-size:14px;"><b>ขั้นตอนที่ 3:</b> เปิด Instagram สร้าง Story</p><p style="margin:8px 0;color:#333;font-size:14px;"><b>ขั้นตอนที่ 4:</b> เลือกรูปที่บันทึกไว้</p></div><button onclick="downloadFromModal()" style="background:linear-gradient(135deg,#d4af37 0%,#f0d77c 100%);color:#333;border:none;padding:14px 30px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;font-family:Prompt,sans-serif;width:100%;margin-bottom:10px;">📥 บันทึกรูป</button><button onclick="openInstagram()" style="background:linear-gradient(135deg,#833AB4 0%,#FD1D1D 50%,#F77737 100%);color:white;border:none;padding:14px 30px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;font-family:Prompt,sans-serif;width:100%;margin-bottom:10px;">📷 เปิด Instagram</button><button onclick="closeShareModal()" style="background:transparent;color:#999;border:none;padding:10px;font-size:14px;cursor:pointer;font-family:Prompt,sans-serif;">ปิด</button></div>';
             document.body.appendChild(modal);
             modal.addEventListener('click', function(e) { if (e.target === modal) closeShareModal(); });
+        }
+        function downloadFromModal() {
+            downloadResult();
+        }
+        function openInstagram() {
+            window.location.href = 'instagram://story-camera';
+            setTimeout(function() {
+                window.location.href = 'https://www.instagram.com/';
+            }, 2000);
         }
         function closeShareModal() {
             const modal = document.getElementById('shareModal');
             if (modal) modal.remove();
-            if (/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-                setTimeout(() => { window.location.href = 'instagram://story-camera'; }, 300);
-            }
         }
         function retryQuiz() {
             document.getElementById('resultPage').style.display = 'none';

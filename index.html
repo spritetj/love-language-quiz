@@ -47,14 +47,14 @@
         .option-btn:hover { background: linear-gradient(135deg, var(--pink-main) 0%, #f8bbd9 100%); border-color: var(--pink-dark); transform: translateX(5px); }
         .option-btn.selected { background: linear-gradient(135deg, var(--pink-dark) 0%, #ad1457 100%); color: white; }
         .result-image { width: 100%; max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin-bottom: 20px; }
-        .share-section { text-align: center; width: 100%; max-width: 100%; padding: 0 5px; }
+        .share-section { text-align: center; width: 100%; max-width: 100%; padding: 0 10px; display: flex; flex-direction: column; align-items: center; }
         .share-title { font-size: 16px; color: #666; margin-bottom: 15px; }
-        .share-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; width: 100%; }
-        .share-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Prompt', sans-serif; transition: all 0.3s ease; flex: 1; min-width: 140px; max-width: 180px; }
+        .share-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; width: 100%; max-width: 320px; }
+        .share-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Prompt', sans-serif; transition: all 0.3s ease; flex: 1; min-width: 140px; }
         .share-btn.download { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); color: #333; }
         .share-btn.instagram { background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%); color: white; }
         .share-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-        .btn-secondary { background: transparent; border: 2px solid var(--pink-dark); color: var(--pink-dark); padding: 14px 40px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Prompt', sans-serif; transition: all 0.3s ease; }
+        .btn-secondary { background: transparent; border: 2px solid var(--pink-dark); color: var(--pink-dark); padding: 14px 40px; border-radius: 50px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Prompt', sans-serif; transition: all 0.3s ease; width: 100%; max-width: 280px; }
         .btn-secondary:hover { background: var(--pink-dark); color: white; }
         .loading-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%); display: none; flex-direction: column; align-items: center; justify-content: center; z-index: 100; }
         .loading-overlay.active { display: flex; }
@@ -76,6 +76,9 @@
         .modal-title { color: var(--pink-dark); font-size: 20px; margin-bottom: 15px; }
         .modal-steps { background: var(--pink-light); padding: 15px; border-radius: 12px; text-align: left; margin-bottom: 20px; }
         .modal-steps p { margin: 8px 0; font-size: 14px; color: #333; }
+        .modal-buttons { display: flex; flex-direction: column; align-items: center; gap: 10px; width: 100%; }
+        .modal-btn { width: 100%; max-width: 280px; display: flex; align-items: center; justify-content: center; }
+        .modal-close-btn { background: none; border: none; color: #999; padding: 10px 20px; cursor: pointer; font-family: 'Prompt', sans-serif; font-size: 14px; }
         .hidden { display: none !important; }
         
         /* Mobile Responsive */
@@ -108,6 +111,8 @@
             .modal-title { font-size: 17px; margin-bottom: 12px; }
             .modal-steps { padding: 12px; }
             .modal-steps p { font-size: 13px; margin: 6px 0; }
+            .modal-buttons { gap: 8px; }
+            .modal-btn { max-width: 100%; padding: 14px 20px; }
             .loading-mascot { width: 110px; }
             .loading-text { font-size: 15px; margin-top: 15px; }
             .loading-hearts span { font-size: 20px; }
@@ -219,9 +224,11 @@
                 <p><b>3.</b> เปิด Instagram สร้าง Story</p>
                 <p><b>4.</b> เลือกรูปที่บันทึกไว้ Share ได้เลย!</p>
             </div>
-            <button class="btn-primary" onclick="saveImage()" style="width:100%;margin-bottom:10px;">📥 บันทึกรูป</button>
-            <button class="share-btn instagram" onclick="openIG()" style="width:100%;justify-content:center;margin-bottom:10px;">📷 เปิด Instagram</button>
-            <button onclick="closeModal()" style="background:none;border:none;color:#999;padding:10px;cursor:pointer;font-family:'Prompt',sans-serif;">ปิด</button>
+            <div class="modal-buttons">
+                <button class="btn-primary modal-btn" onclick="saveImage()">📥 บันทึกรูป</button>
+                <button class="share-btn instagram modal-btn" onclick="openIG()">📷 เปิด Instagram</button>
+                <button class="modal-close-btn" onclick="closeModal()">ปิด</button>
+            </div>
         </div>
     </div>
 
@@ -283,7 +290,6 @@
             mascot2: "images/mascot-2.jpeg",
             mascot3: "images/mascot-3.jpeg",
             mascot4: "images/mascot-4.jpeg",
-            // ผลลัพธ์ - ใช้ชื่อไฟล์ตรงกับที่ upload
             resultA: "images/A.png",
             resultB: "images/B.png",
             resultC: "images/C.png",

@@ -2,7 +2,11 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#f8bbd9">
+    <meta name="format-detection" content="telephone=no">
     <title>The 5 Love Languages Quiz | HAAB</title>
     <meta name="description" content="ค้นหา Love Language ของคุณ! รู้ว่าคุณต้องการความรักแบบไหน">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,16 +14,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
     <style>
         :root { --pink-light: #fce4ec; --pink-main: #f8bbd9; --pink-dark: #e91e63; --gold: #d4af37; --gold-light: #f0d77c; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Prompt', sans-serif; min-height: 100vh; overflow-x: hidden; background: linear-gradient(180deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%); }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+        html, body { height: 100%; }
+        body { font-family: 'Prompt', sans-serif; min-height: 100vh; min-height: -webkit-fill-available; overflow-x: hidden; background: linear-gradient(180deg, #fce4ec 0%, #f8bbd9 50%, #f48fb1 100%); background-attachment: fixed; }
         .floating-hearts { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; z-index: 0; }
         .heart { position: absolute; font-size: 20px; animation: float-up 6s ease-in infinite; opacity: 0.3; }
         @keyframes float-up { 0% { transform: translateY(100vh) rotate(0deg); opacity: 0; } 10% { opacity: 0.3; } 90% { opacity: 0.3; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
         .container { position: relative; z-index: 1; max-width: 500px; margin: 0 auto; padding: 20px; min-height: 100vh; }
         .logo { position: absolute; top: 15px; right: 15px; width: 60px; z-index: 10; }
         .logo img { width: 100%; border-radius: 8px; }
-        .page { display: none; min-height: 100vh; padding-top: 70px; animation: fadeIn 0.5s ease-out; }
-        .page.active { display: flex; flex-direction: column; align-items: center; }
+        .page { display: none; min-height: 100vh; padding-top: 70px; padding-bottom: 30px; animation: fadeIn 0.5s ease-out; }
+        .page.active { display: flex; flex-direction: column; align-items: center; width: 100%; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .landing-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--gold); margin-bottom: 10px; text-align: center; }
         .landing-main-title { font-family: 'Playfair Display', serif; font-size: 42px; font-weight: 700; font-style: italic; background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 20px; line-height: 1.2; text-align: center; }
@@ -35,17 +40,17 @@
         .quiz-mascot { margin-bottom: 15px; }
         .quiz-mascot img { width: 120px; border-radius: 15px; animation: float 3s ease-in-out infinite; }
         @keyframes float { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
-        .question-card { background: rgba(255,255,255,0.95); border-radius: 25px; padding: 25px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); width: 100%; max-width: 450px; }
+        .question-card { background: rgba(255,255,255,0.95); border-radius: 25px; padding: 25px 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); width: 100%; max-width: 100%; }
         .question-text { font-size: 16px; font-weight: 500; color: #333; margin-bottom: 20px; line-height: 1.6; text-align: center; }
         .options { display: flex; flex-direction: column; gap: 10px; }
         .option-btn { background: linear-gradient(135deg, var(--pink-light) 0%, #fce4ec 100%); border: 2px solid transparent; padding: 14px 16px; border-radius: 15px; font-size: 14px; color: #444; cursor: pointer; transition: all 0.3s ease; text-align: left; font-family: 'Prompt', sans-serif; line-height: 1.4; }
         .option-btn:hover { background: linear-gradient(135deg, var(--pink-main) 0%, #f8bbd9 100%); border-color: var(--pink-dark); transform: translateX(5px); }
         .option-btn.selected { background: linear-gradient(135deg, var(--pink-dark) 0%, #ad1457 100%); color: white; }
-        .result-image { width: 100%; max-width: 400px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin-bottom: 20px; }
-        .share-section { text-align: center; width: 100%; max-width: 400px; }
+        .result-image { width: 100%; max-width: 100%; height: auto; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); margin-bottom: 20px; }
+        .share-section { text-align: center; width: 100%; max-width: 100%; padding: 0 5px; }
         .share-title { font-size: 16px; color: #666; margin-bottom: 15px; }
-        .share-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; }
-        .share-btn { display: flex; align-items: center; gap: 8px; padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Prompt', sans-serif; transition: all 0.3s ease; }
+        .share-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 15px; width: 100%; }
+        .share-btn { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 14px 24px; border-radius: 50px; font-size: 14px; font-weight: 600; cursor: pointer; border: none; font-family: 'Prompt', sans-serif; transition: all 0.3s ease; flex: 1; min-width: 140px; max-width: 180px; }
         .share-btn.download { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%); color: #333; }
         .share-btn.instagram { background: linear-gradient(135deg, #833AB4 0%, #FD1D1D 50%, #F77737 100%); color: white; }
         .share-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
@@ -72,11 +77,123 @@
         .modal-steps { background: var(--pink-light); padding: 15px; border-radius: 12px; text-align: left; margin-bottom: 20px; }
         .modal-steps p { margin: 8px 0; font-size: 14px; color: #333; }
         .hidden { display: none !important; }
-        @media (max-width: 400px) {
+        
+        /* Mobile Responsive */
+        @media (max-width: 480px) {
+            .container { padding: 12px; }
+            .logo { width: 45px; top: 10px; right: 10px; }
+            .page { padding-top: 55px; padding-bottom: 25px; }
+            .landing-title { font-size: 18px; }
             .landing-main-title { font-size: 34px; }
-            .question-text { font-size: 15px; }
-            .option-btn { font-size: 13px; padding: 12px 14px; }
+            .landing-subtitle { font-size: 14px; margin-bottom: 20px; padding: 0 10px; }
+            .mascot { width: 140px; height: 140px; margin: 15px 0; }
+            .btn-primary { padding: 15px 35px; font-size: 16px; width: 100%; max-width: 280px; }
+            .progress-bar { height: 6px; margin-bottom: 12px; }
+            .question-counter { font-size: 12px; margin-bottom: 8px; }
+            .quiz-mascot { margin-bottom: 10px; }
+            .quiz-mascot img { width: 90px; }
+            .question-card { padding: 18px 14px; border-radius: 18px; }
+            .question-text { font-size: 14px; margin-bottom: 15px; line-height: 1.5; }
+            .options { gap: 8px; }
+            .option-btn { font-size: 13px; padding: 12px 12px; border-radius: 12px; line-height: 1.4; }
+            .result-image { border-radius: 15px; margin-bottom: 15px; }
+            .share-section { padding: 0; }
+            .share-title { font-size: 14px; margin-bottom: 12px; }
+            .share-buttons { gap: 8px; flex-direction: column; align-items: center; }
+            .share-btn { padding: 14px 20px; font-size: 14px; width: 100%; max-width: 250px; }
+            .btn-secondary { padding: 14px 30px; font-size: 14px; width: 100%; max-width: 250px; margin-top: 10px; }
+            .modal { padding: 15px; }
+            .modal-content { padding: 22px 18px; border-radius: 18px; }
+            .modal-icon { font-size: 40px; margin-bottom: 12px; }
+            .modal-title { font-size: 17px; margin-bottom: 12px; }
+            .modal-steps { padding: 12px; }
+            .modal-steps p { font-size: 13px; margin: 6px 0; }
+            .loading-mascot { width: 110px; }
+            .loading-text { font-size: 15px; margin-top: 15px; }
+            .loading-hearts span { font-size: 20px; }
         }
+        
+        @media (max-width: 360px) {
+            .container { padding: 10px; }
+            .logo { width: 40px; }
+            .page { padding-top: 50px; }
+            .landing-title { font-size: 16px; }
+            .landing-main-title { font-size: 28px; }
+            .landing-subtitle { font-size: 13px; }
+            .mascot { width: 120px; height: 120px; margin: 12px 0; }
+            .btn-primary { padding: 14px 30px; font-size: 15px; }
+            .quiz-mascot img { width: 75px; }
+            .question-card { padding: 15px 12px; }
+            .question-text { font-size: 13px; }
+            .option-btn { font-size: 12px; padding: 10px 10px; }
+            .share-btn { padding: 12px 18px; font-size: 13px; }
+            .btn-secondary { padding: 12px 25px; font-size: 13px; }
+            .modal-content { padding: 18px 15px; }
+            .modal-steps p { font-size: 12px; }
+        }
+        
+        @media (max-width: 320px) {
+            .landing-main-title { font-size: 24px; }
+            .landing-subtitle { font-size: 12px; }
+            .mascot { width: 100px; height: 100px; }
+            .question-text { font-size: 12px; }
+            .option-btn { font-size: 11px; padding: 9px 8px; }
+        }
+        
+        /* Landscape mode on mobile */
+        @media (max-height: 500px) and (orientation: landscape) {
+            .page { padding-top: 45px; min-height: auto; }
+            .landing-page.active { justify-content: flex-start; }
+            .mascot { width: 80px; height: 80px; margin: 10px 0; }
+            .landing-main-title { font-size: 24px; margin-bottom: 10px; }
+            .landing-subtitle { font-size: 12px; margin-bottom: 15px; }
+            .btn-primary { padding: 12px 30px; font-size: 14px; }
+            .quiz-mascot img { width: 60px; }
+            .question-card { padding: 12px; }
+            .question-text { font-size: 13px; margin-bottom: 10px; }
+            .option-btn { padding: 8px 10px; font-size: 12px; }
+            .loading-mascot { width: 80px; }
+        }
+        
+        /* Fix for notch/safe area on newer iPhones */
+        @supports (padding-top: env(safe-area-inset-top)) {
+            .container { 
+                padding-top: calc(15px + env(safe-area-inset-top)); 
+                padding-bottom: calc(15px + env(safe-area-inset-bottom));
+                padding-left: calc(12px + env(safe-area-inset-left));
+                padding-right: calc(12px + env(safe-area-inset-right));
+            }
+            .modal {
+                padding-top: env(safe-area-inset-top);
+                padding-bottom: env(safe-area-inset-bottom);
+            }
+        }
+        
+        /* Prevent text selection on buttons for better mobile UX */
+        button { 
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            touch-action: manipulation;
+        }
+        
+        /* Smooth scrolling */
+        html { scroll-behavior: smooth; }
+        
+        /* Better touch targets for accessibility */
+        @media (hover: none) and (pointer: coarse) {
+            .option-btn { min-height: 48px; }
+            .share-btn { min-height: 48px; }
+            .btn-primary { min-height: 50px; }
+            .btn-secondary { min-height: 48px; }
+        }
+        
+        /* Active states for mobile */
+        .btn-primary:active { transform: scale(0.98); }
+        .btn-secondary:active { transform: scale(0.98); }
+        .share-btn:active { transform: scale(0.98); }
+        .option-btn:active { transform: scale(0.98); background: linear-gradient(135deg, var(--pink-main) 0%, #f8bbd9 100%); }
     </style>
 </head>
 <body>
@@ -162,75 +279,76 @@
         // ถ้ารูปไม่โหลด ให้ตรวจสอบว่าชื่อไฟล์ตรงกับด้านล่างนี้
         const IMAGES = {
             logo: "images/logo.png",
-            mascot1: "images/mascot-1.jpeg",  // หน้าแรก
-            mascot2: "images/mascot-2.jpeg",  // ทำ Quiz
-            mascot3: "images/mascot-3.jpeg",  // Loading
-            mascot4: "images/mascot-4.jpeg",  // ผลลัพธ์
-            resultA: "images/result-A.png",
-            resultB: "images/result-B.png",
-            resultC: "images/result-C.png",
-            resultD: "images/result-D.png",
-            resultE: "images/result-E.png"
+            mascot1: "images/mascot-1.jpeg",
+            mascot2: "images/mascot-2.jpeg",
+            mascot3: "images/mascot-3.jpeg",
+            mascot4: "images/mascot-4.jpeg",
+            // ผลลัพธ์ - ใช้ชื่อไฟล์ตรงกับที่ upload
+            resultA: "images/A.png",
+            resultB: "images/B.png",
+            resultC: "images/C.png",
+            resultD: "images/D.png",
+            resultE: "images/E.png"
         };
         // ====================================================
 
         const questions = [
             { q: "1. เมื่อคุณรู้สึกแย่หรือเหนื่อยล้า สิ่งที่เยียวยาใจคุณได้ดีที่สุดคือ?", opts: [
-                ["คำพูดปลอบโยนว่า \"ไม่เป็นไรนะ คุณทำดีที่สุดแล้ว\"", "A"],
-                ["เขาเข้ามาช่วยทำงานบ้านหรือจัดการปัญหาแทนคุณ", "B"],
-                ["เขาซื้อของกินที่คุณชอบมาวางไว้ให้เงียบๆ", "C"],
-                ["เขามานั่งข้างๆ รับฟังคุณระบายโดยไม่เล่นมือถือ", "D"],
+                ["เขามานั่งข้างๆ รับฟังคุณระบายโดยไม่เล่นมือถือ", "A"],
+                ["เขาซื้อของกินที่คุณชอบมาวางไว้ให้เงียบๆ", "B"],
+                ["เขาเข้ามาช่วยทำงานบ้านหรือจัดการปัญหาแทนคุณ", "C"],
+                ["คำพูดปลอบโยนว่า \"ไม่เป็นไรนะ คุณทำดีที่สุดแล้ว\"", "D"],
                 ["เขาเข้ามากอดคุณแน่นๆ โดยไม่ต้องพูดอะไร", "E"]
             ]},
             { q: "2. ในวันเกิดหรือวันครบรอบ คุณจะประทับใจที่สุดถ้า...", opts: [
-                ["ได้รับจดหมายรักหรือการ์ดที่เขียนความรู้สึกซึ้งๆ", "A"],
-                ["เขาเซอร์ไพรส์ด้วยการลงมือจัดห้องหรือทำอาหารให้ทาน", "B"],
-                ["ได้ของขวัญที่คุณเคยบ่นว่าอยากได้", "C"],
-                ["ได้ไปเที่ยวที่สวยๆ และใช้เวลาด้วยกันทั้งวัน", "D"],
+                ["ได้ไปเที่ยวที่สวยๆ และใช้เวลาด้วยกันทั้งวัน", "A"],
+                ["ได้ของขวัญที่คุณเคยบ่นว่าอยากได้", "B"],
+                ["เขาเซอร์ไพรส์ด้วยการลงมือจัดห้องหรือทำอาหารให้ทาน", "C"],
+                ["ได้รับจดหมายรักหรือการ์ดที่เขียนความรู้สึกซึ้งๆ", "D"],
                 ["ได้นอนดูหนังหรือสวีทกันสองต่อสอง", "E"]
             ]},
             { q: "3. คุณจะรู้สึก \"โกรธ/น้อยใจ\" มากที่สุด เมื่อแฟน...", opts: [
-                ["พูดจาแรงๆ ใส่อารมณ์ หรือวิจารณ์คุณ", "A"],
-                ["เอาเปรียบ ไม่ช่วยหยิบจับอะไรเลย ปล่อยคุณทำคนเดียว", "B"],
-                ["ลืมวันสำคัญ หรือไปเที่ยวไหนก็ไม่เคยมีของฝาก", "C"],
-                ["สนใจแต่เกม/เพื่อน/งาน จนไม่มีเวลาให้คุณ", "D"],
+                ["สนใจแต่เกม/เพื่อน/งาน จนไม่มีเวลาให้คุณ", "A"],
+                ["ลืมวันสำคัญ หรือไปเที่ยวไหนก็ไม่เคยมีของฝาก", "B"],
+                ["เอาเปรียบ ไม่ช่วยหยิบจับอะไรเลย ปล่อยคุณทำคนเดียว", "C"],
+                ["พูดจาแรงๆ ใส่อารมณ์ หรือวิจารณ์คุณ", "D"],
                 ["เดินห่างๆ ปัดมือออก หรือทำท่ารังเกียจการสัมผัส", "E"]
             ]},
             { q: "4. วิธีง้อ (ขอคืนดี) ที่ทำให้คุณใจอ่อนเร็วที่สุด?", opts: [
-                ["คำขอโทษที่จริงใจและบอกรักคุณ", "A"],
-                ["การที่เขาลุกขึ้นมาทำงานบ้านหรือทำสิ่งดีๆ ชดเชยให้", "B"],
-                ["การที่เขาซื้อขนมหรือของขวัญมาง้อ", "C"],
-                ["การที่เขาชวนคุยปรับความเข้าใจและให้เวลากับคุณ", "D"],
+                ["การที่เขาชวนคุยปรับความเข้าใจและให้เวลากับคุณ", "A"],
+                ["การที่เขาซื้อขนมหรือของขวัญมาง้อ", "B"],
+                ["การที่เขาลุกขึ้นมาทำงานบ้านหรือทำสิ่งดีๆ ชดเชยให้", "C"],
+                ["คำขอโทษที่จริงใจและบอกรักคุณ", "D"],
                 ["การที่เขาดึงคุณเข้าไปกอดหรือหอมแก้ม", "E"]
             ]},
             { q: "5. ความสุขเล็กๆ ในชีวิตประจำวันที่คุณต้องการคือ?", opts: [
-                ["ได้ยินคำว่า \"รักนะ\" หรือ \"คิดถึง\" บ่อยๆ", "A"],
-                ["มีคนคอยดูแลเรื่องพื้นฐาน (เช่น เปิดประตูให้, ขับรถให้)", "B"],
-                ["มีเซอร์ไพรส์เล็กๆ น้อยๆ ในวันธรรมดา", "C"],
-                ["ได้ทานข้าวเย็นด้วยกันและคุยกันเรื่องที่เจอมา", "D"],
+                ["ได้ทานข้าวเย็นด้วยกันและคุยกันเรื่องที่เจอมา", "A"],
+                ["มีเซอร์ไพรส์เล็กๆ น้อยๆ ในวันธรรมดา", "B"],
+                ["มีคนคอยดูแลเรื่องพื้นฐาน (เช่น เปิดประตูให้, ขับรถให้)", "C"],
+                ["ได้ยินคำว่า \"รักนะ\" หรือ \"คิดถึง\" บ่อยๆ", "D"],
                 ["ได้จับมือตอนเดินห้าง หรือนั่งเบียดกันบนรถ", "E"]
             ]},
             { q: "6. คุณคิดว่า \"ความรักที่ดี\" วัดกันที่ตรงไหน?", opts: [
-                ["การสื่อสารที่ดี ให้กำลังใจกันเสมอ", "A"],
-                ["การเป็นคู่ที่พร้อมช่วยเหลือดูแลกัน", "B"],
-                ["ความใส่ใจ ที่จดจำรายละเอียดความชอบของกันได้", "C"],
-                ["การมีเวลาคุณภาพให้กัน ไม่ปล่อยให้อีกฝ่ายเหงา", "D"],
+                ["การมีเวลาคุณภาพให้กัน ไม่ปล่อยให้อีกฝ่ายเหงา", "A"],
+                ["ความใส่ใจ ที่จดจำรายละเอียดความชอบของเราได้", "B"],
+                ["การเป็นคู่ที่พร้อมช่วยเหลือดูแลกัน", "C"],
+                ["การสื่อสารที่ดี ให้กำลังใจกันเสมอ", "D"],
                 ["ความใกล้ชิดทางกาย ความอบอุ่นที่สัมผัสได้", "E"]
             ]},
             { q: "7. ถ้าต้องเลือกเพียง 1 อย่าง คุณขาดอะไรไม่ได้เลย?", opts: [
-                ["คำชมและการยอมรับ", "A"],
-                ["การซัพพอร์ตช่วยเหลือ", "B"],
-                ["สิ่งของแทนใจ", "C"],
-                ["เวลาและความสนใจ", "D"],
+                ["เวลาและความสนใจ", "A"],
+                ["สิ่งของแทนใจ", "B"],
+                ["การซัพพอร์ตช่วยเหลือ", "C"],
+                ["คำชมและการยอมรับ", "D"],
                 ["การสัมผัสแตะตัว", "E"]
             ]}
         ];
 
         const resultNames = {
-            A: "Words of Affirmation",
-            B: "Acts of Service", 
-            C: "Receiving Gifts",
-            D: "Quality Time",
+            A: "Quality Time",
+            B: "Receiving Gifts", 
+            C: "Acts of Service",
+            D: "Words of Affirmation",
             E: "Physical Touch"
         };
 
